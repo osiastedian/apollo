@@ -22,4 +22,4 @@ workflows:
   build-apollo-ui:
     # Run the welcome/run job in its own container
     jobs:
-      - install
+      - test
