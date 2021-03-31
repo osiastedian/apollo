@@ -1,0 +1,25 @@
+# Use the latest 2.1 version of CircleCI pipeline process engine. See: https://circleci.com/docs/2.0/configuration-reference
+version: 2.1
+# Use a package of configuration called an orb.
+orbs:
+  # Declare a dependency on the welcome-orb
+  node: circleci/node@4.2
+jobs:
+  test:
+    executor: node/default
+    steps:
+      - checkout
+      - node/install-packages
+      - run:
+          command: npm run test
+  build:
+    executor: node/default
+    steps:
+      - run:
+          command: npm run nx build
+workflows:
+  # Name the workflow "welcome"
+  build-apollo-ui:
+    # Run the welcome/run job in its own container
+    jobs:
+      - install
