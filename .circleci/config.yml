@@ -32,4 +32,10 @@ workflows:
   build-and-deploy:
     jobs:
       - build
-      - deploy-ui
+      - deploy-ui:
+          filters:
+              branches:
+                only:
+                  - main
+          requires:
+            - build
