@@ -1,0 +1,5 @@
+FROM nginx
+
+COPY ../dist/apps/apollo-ui /usr/share/nginx/html
+
+
