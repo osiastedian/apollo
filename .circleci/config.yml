@@ -20,13 +20,13 @@ jobs:
     executor:
       name: heroku/default
     steps:
-      - install
-      - check-authentication
+      - heroku/install
+      - heroku/check-authentication
       - checkout
       - setup_remote_docker
-      - push-docker-image:
+      - heroku/push-docker-image:
           recursive: true
-      - release-docker-image:
+      - heroku/release-docker-image:
           recursive: true
 workflows:
   build-and-deploy:
