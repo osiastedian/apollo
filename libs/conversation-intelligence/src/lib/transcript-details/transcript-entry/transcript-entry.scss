@@ -1,0 +1,64 @@
+.transcript-entry {
+    .content {
+        span {
+            cursor: pointer;
+        }
+    }
+
+    &.blue {
+        .time-start {
+            color: #1a99f6;
+        }
+
+        .content {
+            color: #556c86;
+            border-color: #0d76c654 !important;
+
+            span {
+                &:hover,
+                &.highlighted {
+                    background-color: #1a99f634;
+                }
+            }
+        }
+
+        &:hover,
+        &.highligthed {
+            background-color: #1a99f611;
+        }
+    }
+
+    &.purple {
+        .time-start {
+            color: #8868e9;
+        }
+
+        .content {
+            color: #354053;
+            border-color: #8868e954 !important;
+
+            span {
+                &:hover,
+                &.highlighted {
+                    background-color: #8868e94f;
+                }
+            }
+        }
+
+        &:hover,
+        &.highligthed {
+            background-color: #8868e911;
+        }
+    }
+
+    .share {
+        opacity: 0;
+        transition: opacity ease-in-out 0.3s;
+    }
+
+    &:hover {
+        .share {
+            opacity: 1;
+        }
+    }
+}

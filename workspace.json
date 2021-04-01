@@ -1,23 +1,12 @@
 {
   "version": 2,
-  "cli": {
-    "defaultCollection": "@nrwl/react"
-  },
+  "cli": { "defaultCollection": "@nrwl/react" },
   "defaultProject": "apollo-ui",
   "generators": {
     "@nrwl/react": {
-      "application": {
-        "style": "scss",
-        "linter": "eslint",
-        "babel": true
-      },
-      "component": {
-        "style": "scss"
-      },
-      "library": {
-        "style": "scss",
-        "linter": "eslint"
-      }
+      "application": { "style": "scss", "linter": "eslint", "babel": true },
+      "component": { "style": "scss" },
+      "library": { "style": "scss", "linter": "eslint" }
     }
   },
   "projects": {
@@ -70,13 +59,9 @@
         },
         "serve": {
           "executor": "@nrwl/web:dev-server",
-          "options": {
-            "buildTarget": "apollo-ui:build"
-          },
+          "options": { "buildTarget": "apollo-ui:build" },
           "configurations": {
-            "production": {
-              "buildTarget": "apollo-ui:build:production"
-            }
+            "production": { "buildTarget": "apollo-ui:build:production" }
           }
         },
         "lint": {
@@ -108,15 +93,34 @@
             "devServerTarget": "apollo-ui:serve"
           },
           "configurations": {
-            "production": {
-              "devServerTarget": "apollo-ui:serve:production"
-            }
+            "production": { "devServerTarget": "apollo-ui:serve:production" }
           }
         },
         "lint": {
           "executor": "@nrwl/linter:eslint",
+          "options": { "lintFilePatterns": ["apps/apollo-ui-e2e/**/*.{js,ts}"] }
+        }
+      }
+    },
+    "conversation-intelligence": {
+      "root": "libs/conversation-intelligence",
+      "sourceRoot": "libs/conversation-intelligence/src",
+      "projectType": "library",
+      "targets": {
+        "lint": {
+          "executor": "@nrwl/linter:eslint",
           "options": {
-            "lintFilePatterns": ["apps/apollo-ui-e2e/**/*.{js,ts}"]
+            "lintFilePatterns": [
+              "libs/conversation-intelligence/**/*.{ts,tsx,js,jsx}"
+            ]
+          }
+        },
+        "test": {
+          "executor": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/conversation-intelligence"],
+          "options": {
+            "jestConfig": "libs/conversation-intelligence/jest.config.js",
+            "passWithNoTests": true
           }
         }
       }
