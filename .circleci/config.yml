@@ -5,10 +5,21 @@ orbs:
   heroku: circleci/heroku@1.2.6
   node: circleci/node@4.2.1
   cypress: cypress-io/cypress@1.27.0
+
+jobs:
+  build:
+    executor:
+      name: node/default
+    steps:
+      - checkout
+      - node/install-packages
+      - run:
+          command: npm run buid
 workflows:
   test-and-deploy:
     jobs:
-      - node/test
+      - build
+      # - node/test
       # - heroku/deploy-via-git:
       #     filters:
       #       branches:
