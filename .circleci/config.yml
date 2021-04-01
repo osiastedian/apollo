@@ -26,8 +26,7 @@ jobs:
       - setup_remote_docker
       - heroku/push-docker-image:
           recursive: true
-      - heroku/release-docker-image:
-          recursive: true
+      - heroku/release-docker-image
 workflows:
   build-and-deploy:
     jobs:
