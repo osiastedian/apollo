@@ -22,7 +22,6 @@ workflows:
       - build
       # - node/test
       - heroku/deploy-via-git:
-          app-name: apollo-ui
           filters:
             branches:
               only:
