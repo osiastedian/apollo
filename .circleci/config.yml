@@ -24,6 +24,9 @@ jobs:
       - heroku/check-authentication
       - checkout
       - setup_remote_docker
+      # - run: |
+      #     docker create -v /cfg --name configs alpine:3.4 /bin/true
+      #     docker cp ./dist/apps/apollo-ui configs:/cfg
       - heroku/push-docker-image:
           process-types: web
           recursive: true
