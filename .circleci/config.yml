@@ -16,17 +16,20 @@ jobs:
       - node/install-packages
       - run:
           command: npm run nx build apollo-ui
+  deploy-ui:
+    executor:
+      name: heroku/default
+    steps:
+      - install
+      - check-authentication
+      - checkout
+      - setup_remote_docker
+      - push-docker-image:
+          recursive: true
+      - release-docker-image:
+          recursive: true
 workflows:
   build-and-deploy:
     jobs:
       - build
-      # - node/test
-      - heroku/push-docker-image:
-          pre-deploy:
-            - setup_remote_docker
-          filters:
-            branches:
-              only:
-                - main
-          requires:
-            - build
+      - deploy-ui
