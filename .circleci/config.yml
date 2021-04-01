@@ -16,7 +16,7 @@ jobs:
       - node/install-packages
       - run:
           command: npm run nx build apollo-ui
-  deploy-ui:
+  deploy:
     executor:
       name: heroku/default
     steps:
@@ -32,7 +32,7 @@ workflows:
   build-and-deploy:
     jobs:
       - build
-      - deploy-ui:
+      - deploy:
           filters:
               branches:
                 only:
