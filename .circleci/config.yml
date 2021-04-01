@@ -10,7 +10,7 @@ jobs:
   build:
     executor:
       name: node/default
-      tag: '12.14.1'
+      tag: "12.14.1"
     steps:
       - checkout
       - node/install-packages
@@ -21,8 +21,9 @@ workflows:
     jobs:
       - build
       # - node/test
-      - setup_remote_docker
       - heroku/push-docker-image:
+          pre-deploy:
+            - setup_remote_docker
           filters:
             branches:
               only:
