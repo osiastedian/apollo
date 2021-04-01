@@ -21,6 +21,7 @@ workflows:
     jobs:
       - build
       # - node/test
+      - setup_remote_docker
       - heroku/push-docker-image:
           filters:
             branches:
