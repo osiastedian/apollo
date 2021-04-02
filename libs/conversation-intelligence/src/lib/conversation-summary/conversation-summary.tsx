@@ -11,7 +11,7 @@ interface ConversationParticipant {
   totalTime: number;
   name: string;
   sentenceTimings: SentenceTiming[];
-  color: string;
+  theme: string;
 }
 export interface ConversationSummaryProps {
   transcript: Transcript;
@@ -54,13 +54,13 @@ export function ConversationSummary(props: ConversationSummaryProps) {
     setConversationParticipants([
       {
         name: 'You',
-        color: '#8868E9',
+        theme: 'purple',
         totalTime: callerTotalTime / conversationTime,
         sentenceTimings: callerSentences,
       },
       {
         name: 'Michael B.',
-        color: '#1A99F6',
+        theme: 'blue',
         sentenceTimings: customerSentences,
         totalTime: customerTotalTime / conversationTime,
       },
@@ -70,15 +70,18 @@ export function ConversationSummary(props: ConversationSummaryProps) {
   return (
     <div>
       {conversationParticipants.map((participant, i) => [
-        <div key={participant.name} className="participant-summary">
-          <div style={{ color: participant.color }}>
+        <div
+          key={participant.name}
+          className={`participant-summary ${participant.theme}`}
+        >
+          <div>
             <span> {Math.round(participant.totalTime * 100)}% </span>
             <span>{participant.name.toUpperCase()}</span>
           </div>
           <WaveForm
             totalTime={totalTime}
             sentenceTimings={participant.sentenceTimings}
-            backgroundColor={participant.color}
+            theme={participant.theme}
             currentTime={currentTime}
             setCurrentTime={(time) => setCurrentTime(time)}
           ></WaveForm>
@@ -93,9 +96,6 @@ export function ConversationSummary(props: ConversationSummaryProps) {
               <hr
                 className="position-absolute played-timeline"
                 style={{
-                  top: 0,
-                  bottom: 0,
-                  left: 0,
                   width: `${(currentTime / totalTime) * 100}%`,
                 }}
               ></hr>

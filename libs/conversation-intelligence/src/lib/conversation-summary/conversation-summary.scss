@@ -1,27 +1,38 @@
 $timelineColor: #dfe2e5;
 
 @mixin summary-layout() {
-    display: grid;
-    grid-template-columns: 1fr 7fr;
+  display: grid;
+  grid-template-columns: 1fr 7fr;
 }
 
 .participant-summary {
-    @include summary-layout();
+  @include summary-layout();
+
+  &.purple {
+    color: #8868e9;
+  }
+
+  &.blue {
+    color: #1a99f6;
+  }
 }
 
 .timeline {
-    @include summary-layout();
-    hr {
-        background-color: $timelineColor;
-        margin: 5px 0;
-    }
+  @include summary-layout();
+  hr {
+    background-color: $timelineColor;
+    margin: 5px 0;
+  }
 
-    .border-left,
-    .border-right {
-        border-color: $timelineColor;
-    }
+  .border-left,
+  .border-right {
+    border-color: $timelineColor;
+  }
 
-    .played-timeline {
-        background-color: #7e8fa5;
-    }
+  .played-timeline {
+    background-color: #7e8fa5;
+    top: 0;
+    bottom: 0;
+    left: 0;
+  }
 }

@@ -1,6 +1,19 @@
 .wave-form-bar {
-    &:hover {
-        border: 1px solid #aaaaaa;
-        cursor: pointer;
-    }
+  position: absolute;
+  height: 100%;
+  &.purple {
+    background-color: #8868e9;
+  }
+
+  &.blue {
+    background-color: #1a99f6;
+  }
+
+  &.played {
+    background-color: #b7c0ce;
+  }
+}
+
+.wave-form {
+  height: 25px;
 }
