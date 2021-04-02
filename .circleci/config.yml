@@ -34,9 +34,9 @@ jobs:
       - heroku/release-docker-image:
           process-types: web
 workflows:
-  build-and-deploy:
+  test-and-deploy:
     jobs:
-      - build
+      - node/test
       - deploy:
           filters:
               branches:
