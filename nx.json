@@ -16,7 +16,7 @@
     }
   },
   "projects": {
-    "apollo-ui": { "tags": [] },
+    "apollo-ui": { "tags": [], "implicitDependencies": ["conversation-intelligence"] },
     "apollo-ui-e2e": { "tags": [], "implicitDependencies": ["apollo-ui"] },
     "conversation-intelligence": { "tags": [] }
   }

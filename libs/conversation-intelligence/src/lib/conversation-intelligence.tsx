@@ -11,7 +11,12 @@ import TranscriptDetails from './transcript-details/transcript-details';
 import './conversation-intelligence.module.scss';
 
 /* eslint-disable-next-line */
-export interface ConversationIntelligenceProps {}
+export interface ConversationIntelligenceProps {
+  transcript: {
+    data: Transcript;
+    id: string;
+  };
+}
 
 export function ConversationIntelligence(props: ConversationIntelligenceProps) {
   const [isLoading, setIsLoading] = useState<boolean>(true);
@@ -25,13 +30,10 @@ export function ConversationIntelligence(props: ConversationIntelligenceProps) {
   const [speed, setSpeed] = useState(1);
 
   useEffect(() => {
-    const transcriptId = 'transcript-1';
-    transcriptService.getTranscript(transcriptId).then((fetchedTranscript) => {
-      setTranscript(fetchedTranscript);
-      setAudioUrl(transcriptService.getTranscriptAudioUrl(transcriptId));
-      setIsLoading(false);
-    });
-  }, []);
+    setTranscript(props.transcript.data);
+    setAudioUrl(transcriptService.getTranscriptAudioUrl(props.transcript.id));
+    setIsLoading(false);
+  }, [props.transcript]);
 
   useEffect(() => {
     if (audioUrl) {
@@ -76,6 +78,7 @@ export function ConversationIntelligence(props: ConversationIntelligenceProps) {
     const targetTime = Math.min(currentTime + 10, totalTime);
     audioEl.currentTime = targetTime;
   };
+
   return isLoading ? (
     <span>Loading</span>
   ) : (

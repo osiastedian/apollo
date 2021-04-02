@@ -1,11 +1,27 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 
-import { ConversationIntelligence } from '@apollo/conversation-intelligence';
+import {
+  ConversationIntelligence,
+  transcriptService,
+  Transcript,
+} from '@apollo/conversation-intelligence';
 
 export function App() {
+  const transcriptId = 'transcript-1';
+  const [transcript, setTranscript] = useState<Transcript>();
+  useEffect(() => {
+    transcriptService.getTranscript(transcriptId).then((fetchedTranscript) => {
+      setTranscript(fetchedTranscript);
+    });
+  }, []);
   return (
     <div>
-      <ConversationIntelligence></ConversationIntelligence>
+      <ConversationIntelligence
+        transcript={{
+          data: transcript,
+          id: transcriptId,
+        }}
+      ></ConversationIntelligence>
     </div>
   );
 }
