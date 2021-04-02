@@ -17,13 +17,14 @@ jobs:
       - run:
           command: npm run build
   deploy:
-    executor:
-      name: heroku/default
+    # executor:
+    #   name: heroku/default
+    machine: true
     steps:
       - heroku/install
       - heroku/check-authentication
       - checkout
-      - setup_remote_docker
+      # - setup_remote_docker
       # - run: |
       #     docker create -v /cfg --name configs alpine:3.4 /bin/true
       #     docker cp ./dist/apps/apollo-ui configs:/cfg
