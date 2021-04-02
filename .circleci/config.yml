@@ -7,15 +7,6 @@ orbs:
   cypress: cypress-io/cypress@1.27.0
 
 jobs:
-  build:
-    executor:
-      name: node/default
-      tag: "12.14.1"
-    steps:
-      - checkout
-      - node/install-packages
-      - run:
-          command: npm run build
   deploy:
     executor:
       name: heroku/default
@@ -39,8 +30,8 @@ workflows:
       - node/test
       - deploy:
           filters:
-              branches:
-                only:
-                  - main
+            branches:
+              only:
+                - main
           requires:
-            - build
+            - node/test
