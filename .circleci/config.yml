@@ -17,17 +17,16 @@ jobs:
       - run:
           command: npm run build
   deploy:
-    # executor:
-    #   name: heroku/default
-    machine: true
+    executor:
+      name: heroku/default
     steps:
+      - checkout
+      - setup_remote_docker
       - heroku/install
       - heroku/check-authentication
-      - checkout
-      # - setup_remote_docker
-      # - run: |
-      #     docker create -v /cfg --name configs alpine:3.4 /bin/true
-      #     docker cp ./dist/apps/apollo-ui configs:/cfg
+      - node/install-packages
+      - run:
+          command: npm run build
       - heroku/push-docker-image:
           process-types: web
           recursive: true
@@ -36,7 +35,7 @@ jobs:
 workflows:
   build-and-deploy:
     jobs:
-      - build
+      # - build
       - deploy:
           filters:
               branches:
