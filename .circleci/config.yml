@@ -23,6 +23,7 @@ jobs:
       - checkout
       - setup_remote_docker
       - heroku/install
+      - node/install
       - heroku/check-authentication
       - node/install-packages
       - run:
