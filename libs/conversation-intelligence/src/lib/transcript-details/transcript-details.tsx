@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import { Transcript } from '../models/transcript';
 import TranscriptEntry from './transcript-entry/transcript-entry';
 
+import searchIcon from './icon-search.svg';
+
 import './transcript-details.scss';
 
 /* eslint-disable-next-line */
@@ -21,7 +23,7 @@ export function TranscriptDetails({
   return (
     <div className="mt-4">
       <div className="form-group px-3 search col-md-4">
-        <img src="/assets/svgs/icon-search.svg" alt="search" />
+        <img src={searchIcon} alt="search" />
         <input
           className="form-control"
           value={searchText}
